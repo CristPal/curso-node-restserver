@@ -1,5 +1,4 @@
-const {Router} = require('Express');
-const { route } = require('express/lib/application');
+const {Router} = require('express');
 const { usuariosGet, 
         usuariosPut, 
         usuariosPost, 
