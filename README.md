@@ -1,3 +1,4 @@
-# WEB SERVER + REST SERVER
+# Aplicación de Clima
 
-// Recuerden ejecutar el npm i para reconstruir los modulos de node 
+Recuerden reconstruir los módulos de node con el comando
+```npm init```
