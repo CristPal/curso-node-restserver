@@ -19,8 +19,8 @@ const usuariosGet =  async (req, res = response) => {
     // mas eficiente 
 
     const [total, usuarios] = await Promise.all([ // Promise.'all', crea un arreglo de promesas donde ambas se ejecutan al mismo tiempo
-        await Usuario.countDocuments(query), // (query, estado: true) contar las que tengan estado true (posible eliminar)
-        await Usuario.find(query)
+        Usuario.countDocuments(query), // (query, estado: true) contar las que tengan estado true (posible eliminar)
+        Usuario.find(query)
         .skip(Number(desde))
         .limit(Number(limite))
 
