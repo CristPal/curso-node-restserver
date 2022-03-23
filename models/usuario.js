@@ -23,7 +23,7 @@ const UsuarioSchema = Schema({
     rol: {
         type: String,
         required: true,
-        emun: ['ADMIN_ROL', 'USER_ROL']
+        emun: ['ADMIN_ROLE', 'USER_ROLE']
     },
     estado: {
         type: Boolean,
@@ -39,7 +39,8 @@ const UsuarioSchema = Schema({
 // debemos modificar el metodo toJSON (maneja lo que se envia) de nuestro Schema (objeto)
 // tenemos que usar "function" porque usaremos el this.
 UsuarioSchema.methods.toJSON = function() {
-    const { __v, password, ...usuario} = this.toObject(); //extraemos el __v y password. Guardamos el resto en usuario
+    const { __v, password, _id, ...usuario} = this.toObject(); //extraemos el __v y password. Guardamos el resto en usuario
+    usuario.uid = _id; // Si queremos cambiar la salida de "id" a "uid"
     return usuario; // retornamos el usuario 
 }
 

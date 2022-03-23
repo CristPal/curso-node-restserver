@@ -4,7 +4,6 @@ const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuario');
 const { body } = require('express-validator');
 
-
 // Peticion Get
 const usuariosGet =  async (req, res = response) => {
     
@@ -16,7 +15,7 @@ const usuariosGet =  async (req, res = response) => {
     const query = {estado: true};
     // Esto es una forma muy eficiente cuando necesito usar funciones asincronas que no 
     // influyen entre ellas, pero que quiero ejecutar simultaniamente para hacerlo 
-    // mas eficiente 
+    // mas eficiente
 
     const [total, usuarios] = await Promise.all([ // Promise.'all', crea un arreglo de promesas donde ambas se ejecutan al mismo tiempo
         Usuario.countDocuments(query), // (query, estado: true) contar las que tengan estado true (posible eliminar)
@@ -86,6 +85,7 @@ const usuariosDelete = async(req, res = response) => {
     
     //Cambio el estado usando ese metodo, filtrando por id y pasandolo a falso
     const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
+    
 
     res.json({ 
         usuario

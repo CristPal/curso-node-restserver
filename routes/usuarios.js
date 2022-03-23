@@ -6,8 +6,12 @@ const { usuariosGet,
         usuariosDelete, 
         usuariosPatch } = require('../controllers/usuarios');
 
+const { validando,
+        esAdminRole, 
+        tieneRol,
+        validandoToken} = require('../middlewares')
+
 const { validarRol, validarCorreo, validarUsuarioPorId } = require('../helpers/db-validators'); //Middleware validador de roles
-const {validando} = require('../validation/validar') //Nuestro middleware de envio de errores
 
 // creamos la instancia de Router
 const router =  Router();
@@ -37,6 +41,9 @@ router.post('/',[
 
 // router de la solicitud delete
 router.delete('/:id',[
+        validandoToken,
+        // esAdminRole,
+        tieneRol('ADMIN_ROLE', 'USER_ROLE'), // Enviamos los roles como argumentos al middleware
         check('id', 'no es un ID valido').isMongoId(),
         check('id').custom(validarUsuarioPorId),
         validando
