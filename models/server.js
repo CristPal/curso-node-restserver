@@ -6,10 +6,11 @@ class Server{
      
     constructor(){
 
-        this.app = express();
-        this.port = process.env.PORT;
-        this.usuariosPath = '/api/usuarios';
-        this.usuariosAuth = '/api/auth';
+        // Creacion del server
+        this.app = express(); // Llamado al express
+        this.port = process.env.PORT; // Usando puerto como variable en .env
+        this.usuariosPath = '/api/usuarios'; // Ruta de usuarios
+        this.usuariosAuth = '/api/auth';     // Ruta de autenticacion
 
         // Conectar DB
         this.conectarDB();
@@ -27,7 +28,7 @@ class Server{
     }
 
     middlewares(){
-
+        // Middlewares
         // cors:
         this.app.use(cors());
 
@@ -40,13 +41,13 @@ class Server{
     }
 
     routes(){
-
-        this.app.use(this.usuariosAuth, require('../routes/auth'));
+        // Nuestras rutas 
+        this.app.use(this.usuariosAuth, require('../routes/auth')); 
         this.app.use(this.usuariosPath, require('../routes/usuarios'));
     }
 
     listen(){
-
+        // Listening del puerto
         this.app.listen(this.port, () =>{
             console.log('Server corriendo en puerto' , this.port);
         });
