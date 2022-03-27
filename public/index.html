@@ -42,7 +42,9 @@
 
            // Aqui estamos haciendo la peticion fetch api
            // 1er argumento direccion, 2do especificando el metodo 
-           fetch('http://localhost:8080/api/auth/google', { // Es una promesa 
+           fetch(window.location.hostname.includes('localhost')
+                    ? 'http://localhost:8080/api/auth/google'
+                    : 'https://NombreDeSuAplicacionEnHeroku/api/auth/google', { // Es una promesa 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
